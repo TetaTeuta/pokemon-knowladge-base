@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Simple JS App</title>
-  <link rel="shortcut icon" href="favicon.ico">
+
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
@@ -12,18 +12,16 @@
 <body>
   <div class="title">
     <h3>Pokédex</h3>
-  </div>
-  <div class="main-container">
-      <div id= "modal-container"></div>
-        <ul class="pokemon-list">
-            
-            
-        </ul>
-      </div>
-  </div>
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/core.js"></script>
+        <ul class="pokemon-list"></ul>
+        <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+      
+  <div id= "modal-container">
+   <script src="jQuery/promise-polyfill.js"></script>
   <script src="jQuery/scripts.js"></script>
+  </div>
 </body>
 </html>
