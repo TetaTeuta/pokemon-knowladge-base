@@ -124,7 +124,7 @@ var pokemonRepository = (function () {   //start of IIFE
     var closeButtonElement = $('button class="modal-close">Close</button>');
 
     //adding event listener to close modal when clicked on button
-    closeButtonElement.on('click', hideModal);
+    var closeButtonElement.on('click', hideModal);
 
     // Creating element for name in modal content
     var nameElement = $('<h1>' + item.name + '</h1>');
