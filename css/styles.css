@@ -57,9 +57,10 @@ p {
   min-width: 100px;
   padding: 10px;
   margin: auto;
-  margin border-top: 10px;
+  border-top: 10px;
 
 }
+
 
 .pokemon-list__item {
 
@@ -91,14 +92,15 @@ p {
   background: #5ce7c8;
   position:fixed; 
   justify-content: space-between;
-  right: 50px; 
-  translateY(-50%);                      /* CSS for card */
+  left: 0; 
+  top: 0;
+  bottom: 0;
   padding: 10px;
   border-radius: 10px;
   transition: 0.4s opacity, 0.5s;
   border: 10px solid gray;
   z-index: 999; 
- 
+  
 }
 
 
