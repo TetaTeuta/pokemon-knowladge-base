@@ -21,20 +21,31 @@ var pokemonRepository = (function () {   //start of IIFE
 
   function addListItem(pokemon) {
     var $pokemonList = $('.pokemon-list');
-    var $listItem = $('<li>');   //create an li element that contains a button for each Pokémon
-    var $button = $('<button class="my-class">' + pokemon.name + '</button>'); //creates the button element
-    $listItem.addClass('pokemon-list__item');
-    $button.addClass('button__style');  //Add a class to the button using the classList.add method
-    $listItem.append($button);   //append the button to the list item as its child.
+    var $listItem = $('<button type="button" class="pokemon-list_item list-group-item list-group-item-action" data-toggle="modal" data-target="#pokemon-modal"></button>');
+    $listItem.text(pokemon.name);
     $pokemonList.append($listItem); //append the child in the repository pokemon
-    $button.on('click', function (event) {
+    $listItem.on('click', function (event) {
       showDetails(pokemon); // creating the button as a function/event to be able to click in the future, if need more details.
     });
   }
-  function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(function () {
-      console.log(item);
-      showModal(item);
+  function showDetails(item){
+    pokemonRepository.loadDetails(item).then(function() {
+      var modal = $('.modal-body');
+      var name = $('.modal-title').text(item.name);
+      var height = $('<p class="pokemon-height"></p>').text('Height: ' + item.height);
+      var type = $('<p class="pokemon-type"></p>').text('Type: ' + item.types);
+      var image = $('<img class="pokemon-picture">');
+      image.attr('src', item.imageUrl);
+  
+  
+      if(modal.children().length) {
+        modal.children().remove();
+      }
+  
+      modal.append(image)
+           .append(height)
+           .append(type);
+  
     });
   }
   // Loading data from external API
@@ -110,85 +121,66 @@ var pokemonRepository = (function () {   //start of IIFE
       });
   }
 
-  // show the Modal Content
-  function showModal(item) {
-    var $modalContainer = $('#modal-container');
+  // show the modal content
+  // function showModal(item) {
+  //   var $modalContainer = $('#modal-container');
 
-    // Clearing all existing content of  the modal
-    $modalContainer.empty();
-
-    // Create div element in DOM   // Add class to div DOM element
-    var modal = $('<div class="modal"></div>');
-
-    //creating closing button in modal content
-    var closeButtonElement = $('<button class="modal-close">Close</button>');
-
-    //adding event listener to close modal when clicked on button
-    closeButtonElement.on('click', hideModal);
-
-    // Creating element for name in modal content
-    var nameElement = $('<h1>' + item.name + '</h1>');
-
-    //creating img in modal content
-    var imageElement = $('<img class="modal-img">');
-    imageElement.attr('src', item.imageUrl);
+  //   $modalContainer.empty();
+  //   var modal = $('<div class="modal"></div>');
+  //   var closeButtonElement = $('<button class="modal-close">Close</button>');
+  //   closeButtonElement.on('click', hideModal);
+  //   var nameElement = $('<h1>' + item.name + '</h1>');
+  //   var imageElement = $('<img class="modal-img">');
+  //   imageElement.attr('src', item.imageUrl);
+  //   var heightElement = $('<p>' + 'height : ' + item.height + '</p>');
+  //   var weightElement = $('<p>' + 'weight : ' + item.weight + '</p>');
+  //   var typesElement = $('<p>' + 'types : ' + item.types + '</p>');
+  //   var abilitiesElement = $('<p>' + 'abilities : ' + item.weight + '</p>');
 
 
-    // Creating element for height 
-    var heightElement = $('<p>' + 'height : ' + item.height + '</p>');
+  //   // Appending modal content to webpage
+  //   modal.append(closeButtonElement);
+  //   modal.append(nameElement);
+  //   modal.append(imageElement);
+  //   modal.append(heightElement);
+  //   modal.append(weightElement);
+  //   modal.append(typesElement);
+  //   modal.append(abilitiesElement);
+  //   $modalContainer.append(modal);
+  //   // adds class to show the modal
+  //   $modalContainer.addClass('is-visible');
+  // }
 
-    //creating element for weight in modal content
-    var weightElement = $('<p>' + 'weight : ' + item.weight + '</p>');
+  // // hides modal when you click on close button
+  // function hideModal() {
+  //   var $modalContainer = $('#modal-container');   //jQuery - document.querySelector
+  //   $modalContainer.removeClass('is-visible');
+  // }
 
-    // Creating element for weight in modal content
-    var typesElement = $('<p>' + 'types : ' + item.types + '</p>');
-    // Creating element for abilities in modal content
-    var abilitiesElement = $('<p>' + 'abilities : ' + item.weight + '</p>');
+  // // Hides modal when clicked on ESC on keyboard
+  // jQuery(window).on("keydown", e => {
+  //   var $modalContainer = $("#modal-container");
+  //   if (e.key === "Escape" && $modalContainer.hasClass("is-visible")) {
+  //     hideModal();
+  //   }
+  // });
 
-
-    // Appending modal content to webpage
-    modal.append(closeButtonElement);
-    modal.append(nameElement);
-    modal.append(imageElement);
-    modal.append(heightElement);
-    modal.append(weightElement);
-    modal.append(typesElement);
-    modal.append(abilitiesElement);
-    $modalContainer.append(modal);
-    // adds class to show the modal
-    $modalContainer.addClass('is-visible');
-  }
-
-  // hides modal when you click on close button
-  function hideModal() {
-    var $modalContainer = $('#modal-container');   //jQuery - document.querySelector
-    $modalContainer.removeClass('is-visible');
-  }
-
-  // Hides modal when clicked on ESC on keyboard
-  jQuery(window).on("keydown", e => {
-    var $modalContainer = $("#modal-container");
-    if (e.key === "Escape" && $modalContainer.hasClass("is-visible")) {
-      hideModal();
-    }
-  });
-
-  // Hides modal if clicked outside of it
-  var $modalContainer = document.querySelector('.pokemon-list');
-  $modalContainer.addEventListener('click', (e) => {                     //vrati se na ovo kasnije, treba konvertirat u jQuery, provjeri za taj click kurac 
-    var target = e.target;
-    if (target === $modalContainer) {
-      hideModal();
-    }
-  });
+  // // Hides modal if clicked outside of it
+  // var $modalContainer = document.querySelector('.pokemon-list');
+  // $modalContainer.addEventListener('click', (e) => {                     
+  //   var target = e.target;
+  //   if (target === $modalContainer) {
+  //     hideModal();
+  //   }
+  // });
   return {
     loadList: loadList,
     addListItem: addListItem,
     add: add,
     getAll: getAll,
     loadDetails: loadDetails,
-    showModal: showModal,
-    hideModal: hideModal
+    // showModal: showModal,
+    // hideModal: hideModal
   };
 })();  //this one closes IIFE
 
