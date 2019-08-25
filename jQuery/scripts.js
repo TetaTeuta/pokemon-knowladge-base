@@ -2,7 +2,7 @@
 var pokemonRepository = (function () {   //start of IIFE
   var repository = [];
 
-  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function add(pokemon) {
     if (
@@ -21,7 +21,7 @@ var pokemonRepository = (function () {   //start of IIFE
 
   function addListItem(pokemon) {
     var $pokemonList = $('.pokemon-list');
-    var $listItem = $('<button type="button" class="pokemon-list_item list-group-item list-group-item-action" data-toggle="modal" data-target="#pokemon-modal"></button>');
+    var $listItem = $('<button type="button" class=" col-4 pokemon-list_item text-center list-group-item list-group-item-action list-group-item-dark" data-toggle="modal" data-target="#pokemon-modal" style="background-color: #5ce7c8;"></button>');
     $listItem.text(pokemon.name);
     $pokemonList.append($listItem); //append the child in the repository pokemon
     $listItem.on('click', function (event) {
@@ -29,7 +29,7 @@ var pokemonRepository = (function () {   //start of IIFE
     });
   }
   function showDetails(item){
-    pokemonRepository.loadDetails(item).then(function() {
+    pokemonRepository.loadDetails(item).then(function() {    //modal
       var modal = $('.modal-body');
       var name = $('.modal-title').text(item.name);
       var height = $('<p class="pokemon-height"></p>').text('Height: ' + item.height);
@@ -121,66 +121,13 @@ var pokemonRepository = (function () {   //start of IIFE
       });
   }
 
-  // show the modal content
-  // function showModal(item) {
-  //   var $modalContainer = $('#modal-container');
-
-  //   $modalContainer.empty();
-  //   var modal = $('<div class="modal"></div>');
-  //   var closeButtonElement = $('<button class="modal-close">Close</button>');
-  //   closeButtonElement.on('click', hideModal);
-  //   var nameElement = $('<h1>' + item.name + '</h1>');
-  //   var imageElement = $('<img class="modal-img">');
-  //   imageElement.attr('src', item.imageUrl);
-  //   var heightElement = $('<p>' + 'height : ' + item.height + '</p>');
-  //   var weightElement = $('<p>' + 'weight : ' + item.weight + '</p>');
-  //   var typesElement = $('<p>' + 'types : ' + item.types + '</p>');
-  //   var abilitiesElement = $('<p>' + 'abilities : ' + item.weight + '</p>');
-
-
-  //   // Appending modal content to webpage
-  //   modal.append(closeButtonElement);
-  //   modal.append(nameElement);
-  //   modal.append(imageElement);
-  //   modal.append(heightElement);
-  //   modal.append(weightElement);
-  //   modal.append(typesElement);
-  //   modal.append(abilitiesElement);
-  //   $modalContainer.append(modal);
-  //   // adds class to show the modal
-  //   $modalContainer.addClass('is-visible');
-  // }
-
-  // // hides modal when you click on close button
-  // function hideModal() {
-  //   var $modalContainer = $('#modal-container');   //jQuery - document.querySelector
-  //   $modalContainer.removeClass('is-visible');
-  // }
-
-  // // Hides modal when clicked on ESC on keyboard
-  // jQuery(window).on("keydown", e => {
-  //   var $modalContainer = $("#modal-container");
-  //   if (e.key === "Escape" && $modalContainer.hasClass("is-visible")) {
-  //     hideModal();
-  //   }
-  // });
-
-  // // Hides modal if clicked outside of it
-  // var $modalContainer = document.querySelector('.pokemon-list');
-  // $modalContainer.addEventListener('click', (e) => {                     
-  //   var target = e.target;
-  //   if (target === $modalContainer) {
-  //     hideModal();
-  //   }
-  // });
   return {
     loadList: loadList,
     addListItem: addListItem,
     add: add,
     getAll: getAll,
     loadDetails: loadDetails,
-    // showModal: showModal,
-    // hideModal: hideModal
+
   };
 })();  //this one closes IIFE
 

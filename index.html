@@ -16,28 +16,26 @@
 <body>
 
   <div class="title">
-    <h3>Pokédex</h3>
+    <h3 class="text-center">Pokédex</h3>
   </div>
-  <main class="container">
-    <div class="col-6 col-md-4">
-      <ul class="pokemon-list"></ul>
 
-      <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
-          <a class="navbar-brand" href="#">
-            <img src="https://seeklogo.com/images/P/Pokemon-logo-7714F3CEA6-seeklogo.com.png" width="100" height="50"
-              class="d-inline-block align-top" alt=""> </a>
-    
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </div>
-        </nav>
-        <div class="pokemon-list"></div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="https://seeklogo.com/images/P/Pokemon-logo-7714F3CEA6-seeklogo.com.png" width="100" height="50"
+          class="d-inline-block align-top" alt=""> </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </div>
+    </nav>
+  <main class="container">
+      <ul class="pokemon-list"></ul>
         <div class="modal fade" id="pokemon-modal" tabindex="-1" role="dialog" aria-labelledby="pokemon-name" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -54,8 +52,6 @@
             </div>
           </div>
         </div>
-
-    </div>
    
   </main>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
