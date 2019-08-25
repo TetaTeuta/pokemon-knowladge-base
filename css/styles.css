@@ -31,24 +31,6 @@ h3{
 
 }
 
-p {
-  display: block;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
-
-}
-
-.container {
-  display: block;                 
-  padding: 10px;
-  max-width: 1440px;                     /*list of pokemons*/
-  min-width: 200px;                            
-  margin-top: 100px;
-  margin:0;
-
-}
-
 
 .title {
 

@@ -21,11 +21,11 @@ var pokemonRepository = (function () {   //start of IIFE
 
   function addListItem(pokemon) {
     var $pokemonList = $('.pokemon-list');
-    var $listItem = $('<button type="button" class=" col-4 pokemon-list_item text-center list-group-item list-group-item-action list-group-item-dark" data-toggle="modal" data-target="#pokemon-modal" style="background-color: #5ce7c8;"></button>');
+    var $listItem = $('<button type="button" class=" col-md-6 pokemon-list_item text-center list-group-item list-group-item-action list-group-item-dark" data-toggle="modal" data-target="#pokemon-modal" style="background-color: #5ce7c8;"></button>');
     $listItem.text(pokemon.name);
     $pokemonList.append($listItem); //append the child in the repository pokemon
     $listItem.on('click', function (event) {
-      showDetails(pokemon); // creating the button as a function/event to be able to click in the future, if need more details.
+      showDetails(pokemon); // creating the button as a function/event 
     });
   }
   function showDetails(item){
